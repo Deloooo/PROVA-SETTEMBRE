@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="verificaOrarioSettimanale">
+  <ClassDiagramComponents>
+    <Class name="DatiCondivisi" package="verificaorariosettimanale" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="elencoClassiTrovate" type="ArrayList&lt;JOrario&gt;" visibility="package"/>
+        <Field name="numEl" type="int" visibility="private"/>
+        <Field name="elncoCorse" type="String" visibility="private"/>
+        <Field name="classeDaRicercare" type="String" visibility="private"/>
+        <Field name="sem1" type="Semaphore" visibility="public"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getElncoCorse" returnType="String" visibility="public"/>
+        <Method name="getClasseDaRicercare" returnType="String" visibility="public"/>
+        <Method name="setElncoCorse" returnType="void" visibility="public">
+          <Argument type="String" name="elncoCorse"/>
+        </Method>
+        <Method name="setClasseDaRicercare" returnType="void" visibility="public">
+          <Argument type="String" name="classeDaRicercare"/>
+        </Method>
+        <Method name="SignalSem1" returnType="void" visibility="public"/>
+        <Method name="WaitSem1" returnType="void" visibility="public"/>
+        <Method name="pushVet" returnType="void" visibility="public">
+          <Argument type="JOrario" name="p"/>
+        </Method>
+        <Method name="visualizzaOrari" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="JOrario" package="verificaorariosettimanale" visibility="public" xPosition="36.0" yPosition="443.0">
+      <Fields>
+        <Field name="Giorno" type="String" visibility="private"/>
+        <Field name="orari" type="int" visibility="private"/>
+        <Field name="professore" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="package"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="Giorno"/>
+          <Argument type="int" name="orari"/>
+          <Argument type="String" name="professore"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Semaphore" package="verificaorariosettimanale" visibility="public" xPosition="457.0" yPosition="-5.0">
+      <Fields>
+        <Field name="valore" type="int" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="initial"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="Wait" returnType="void" visibility="public" isSynchronized="true"/>
+        <Method name="Signal" returnType="void" visibility="public" isSynchronized="true"/>
+        <Method name="P" returnType="void" visibility="public" isSynchronized="true"/>
+        <Method name="V" returnType="void" visibility="public" isSynchronized="true"/>
+      </Methods>
+    </Class>
+    <Class name="threadRicerca" package="verificaorariosettimanale" visibility="public" xPosition="676.0" yPosition="443.0">
+      <Fields>
+        <Field name="datiCon" type="DatiCondivisi" visibility="private"/>
+        <Field name="vettore" type="String[]" visibility="private"/>
+        <Field name="professore" type="String" visibility="private"/>
+        <Field name="classe" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="DatiCondivisi" name="datiCon"/>
+          <Argument type="String[]" name="n"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="run" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="VerificaOrarioSettimanale" package="verificaorariosettimanale" visibility="public" xPosition="696.0" yPosition="143.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="datiCon" source="verificaorariosettimanale.threadRicerca" target="verificaorariosettimanale.DatiCondivisi" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="verificaorariosettimanale.DatiCondivisi" target="verificaorariosettimanale.JOrario" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="elencoClassiTrovate" source="verificaorariosettimanale.DatiCondivisi" target="verificaorariosettimanale.JOrario" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;JOrario&gt;"/>
+    <HasRelation name="sem1" source="verificaorariosettimanale.DatiCondivisi" target="verificaorariosettimanale.Semaphore" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
