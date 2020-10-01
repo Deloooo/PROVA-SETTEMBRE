@@ -1,0 +1,15 @@
+1)Salvare una stringa contenente gli orari di ogni professore di ogni giorno della settimana 
+2)chiedere all'utente di inserire la classe da ricercare così da visualizzare l'orario settimanale 
+3)facendo utilizzo di thread ricercare per ogni professore la classe desiderata così da visualizzare tutt le ore in cui è presente
+4)al termine il programma visualizzerà gli orari della classe
+
+GRADI di parallelismo: (numero di thread da usare), 8 compreso il main
+main chiede all'utente la classe da ricercare, visualizza tutti gli orari di quella classe
+
+
+thread: (tutti e 7 i thread) ricerca, ognuno ha un professore differente,  se il proprio prof ha la classe da ricercare, se sì la salva in un vettore che alla fine verrà visualizzato
+
+Dati condivisi: elencoClassiTrovate, classeDaRicercare, VettoreOrariTrovati
+mutua esclusione: elencoClassiTrovate (si),classeDaRicercare(no), VettoreOrariTrovati(si)
+sincronizzazione: nulla
+
